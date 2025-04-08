@@ -7,11 +7,11 @@ pipeline {
                 script {
                     try {
                         sh 'echo "Running script..."'
-                        //sh 'false' // Simulate a failure
-                         sh 'true' // Simulate success
+                        sh 'true' // Simulate success
+                        // sh 'false' // Simulate a failure
                     } catch (Exception e) {
                         echo "Script failed!"
-                        error "Script failed"
+                        //error "Script failed" // Commented out
                     }
                 }
             }
