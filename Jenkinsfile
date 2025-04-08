@@ -7,8 +7,8 @@ pipeline {
                 script {
                     try {
                         sh 'echo "Running script..."'
-                        sh 'false' // Simulate a failure
-                        // sh 'true' // Simulate success
+                        //sh 'false' // Simulate a failure
+                         sh 'true' // Simulate success
                     } catch (Exception e) {
                         echo "Script failed!"
                         error "Script failed"
