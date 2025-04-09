@@ -5,23 +5,23 @@ pipeline {
             steps {
                 script {
                     if (env.BRANCH_NAME == 'feature-branch') {
-                        git credentialsId: 'Jeslin-14', url: 'https://github.com/Jeslin-14/bits-pilani.git', branch: env.BRANCH_NAME
+                        git credentialsId: 'jeslin_gitId', url: 'https://github.com/Jeslin-14/bits-pilani.git', branch: env.BRANCH_NAME
                     } else {
-                        git credentialsId: 'Jeslin-14', url: 'https://github.com/Jeslin-14/bits-pilani.git', branch: 'main' //Or master
+                        git credentialsId: 'jeslin_gitId', url: 'https://github.com/Jeslin-14/bits-pilani.git', branch: 'main'
                     }
                 }
             }
         }
         stage('Build') {
             steps {
-                sh 'echo "Building..."'
-                // Add your build steps here
+                bat 'echo Building...' // Use bat for Windows commands
+                // Add your Windows build commands here
             }
         }
         stage('Test') {
             steps {
-                sh 'echo "Testing..."'
-                // Add your test steps here
+                bat 'echo Testing...' // Use bat for Windows commands
+                // Add your Windows test commands here
             }
         }
     }
