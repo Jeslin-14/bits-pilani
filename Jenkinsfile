@@ -1,32 +1,39 @@
 pipeline {
     agent any
-
     stages {
-        stage('Run Script') {
+        stage('Checkout') {
             steps {
                 script {
-                    try {
-                        sh 'echo "Running script..."'
-                        sh 'true' // Simulate success
-                        // sh 'false' // Simulate a failure
-                    } catch (Exception e) {
-                        echo "Script failed!"
-                        //error "Script failed" // Commented out
+                    if (env.BRANCH_NAME == 'feature-branch') {
+                        git credentialsId: 'Jeslin-14', url: 'https://github.com/Jeslin-14/bits-pilani.git', branch: env.BRANCH_NAME
+                    } else {
+                        git credentialsId: 'Jeslin-14', url: 'https://github.com/Jeslin-14/bits-pilani.git', branch: 'main' //Or master
                     }
                 }
             }
         }
+        stage('Build') {
+            steps {
+                sh 'echo "Building..."'
+                // Add your build steps here
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'echo "Testing..."'
+                // Add your test steps here
+            }
+        }
     }
-
     post {
         always {
-            echo "Pipeline finished."
+            echo 'Pipeline finished.'
         }
         success {
-            echo "Everything went well!"
+            echo 'Build Success'
         }
         failure {
-            echo "Something went wrong!"
+            echo 'Build Failure'
         }
     }
 }
