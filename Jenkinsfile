@@ -14,15 +14,11 @@ pipeline {
         }
         stage('Build') {
             steps {
-                bat 'echo Building...' // Use bat for Windows commands
-                // Add your Windows build commands here
-            }
+                bat 'echo Building...'             }
         }
         stage('Test') {
             steps {
-                bat 'echo Testing...' // Use bat for Windows commands
-                // Add your Windows test commands here
-            }
+                bat 'echo Testing...'             }
         }
     }
     post {
